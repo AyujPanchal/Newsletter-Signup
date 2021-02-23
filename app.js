@@ -20,7 +20,7 @@ app.post("/",function(req, res){
     const lname = req.body.LName;
     const email = req.body.Email;
     const data = {
-        members: [
+        'members': [
             {
                 email_address: email,
                 status:"subscribed",
@@ -29,15 +29,15 @@ app.post("/",function(req, res){
                     LNAME: lname
                 }
             }
-        ]
-    };
+        ],
+    }
 
     const jsonData = JSON.stringify(data);
     const url = "https://us1.api.mailchimp.com/3.0/lists/7be537763d";
     const options = {
         method: "POST",
         auth: "Ayuj:556edc60366c13d1045346329f352e80-us1"
-    };
+    }
 
     const request = https.request(url, options, function(response){
         response.on("data",function(data){
@@ -48,7 +48,7 @@ app.post("/",function(req, res){
         } else {
             res.sendFile(__dirname + "/failure.html");
         }
-    });
+    })
     request.write(jsonData);
     request.end();
 });
