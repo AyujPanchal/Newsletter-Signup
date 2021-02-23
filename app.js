@@ -57,7 +57,9 @@ app.post("/failure",function(req, res){
     res.redirect("/");
 });
 
-app.listen(process.env.PORT || 5000, function () {
+app.set( 'port', ( process.env.PORT || 5000 ));
+
+app.listen(app.get('port'), function () {
     console.log("server is running on port 5000.");
 });
 
